@@ -1,2 +1,6 @@
 venv/
 __pycache__/
+client/node_modules
+.vscode
+*.env
+pro-agg.code-workspace
