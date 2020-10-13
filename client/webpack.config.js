@@ -1,28 +1,28 @@
-const path = require('path')
+const path = require("path");
 
 module.exports = {
-    entry: './src/index.js',
-    module: {
-        rules: [
-        { test: /\.svg$/, use: 'svg-inline-loader' },
-        { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-         { test: /\.(js)$/, use: 'babel-loader' }
-        ]
-    },
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'index_bundle.js'
-      },
+	entry: "./src/index.js",
+	module: {
+		rules: [
+			{ test: /\.svg$/, use: "svg-inline-loader" },
 
-      mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+			{ test: /\.css$/, use: ["style-loader", "css-loader"] },
 
-      devServer: {
-        proxy: {
-          '/api': 'http://localhost:5000'
-        },
+			{ test: /\.(js)$/, use: "babel-loader" },
+		],
+	},
+	output: {
+		path: path.resolve(__dirname, "dist"),
+		filename: "index_bundle.js",
+	},
 
-        hot: true,
-      }
+	mode: process.env.NODE_ENV === "production" ? "production" : "development",
 
-}
+	devServer: {
+		proxy: {
+			"/api": "http://localhost:5000",
+		},
 
+		hot: true,
+	},
+};

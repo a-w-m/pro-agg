@@ -61,4 +61,3 @@ source = BeautifulSoup(html_text, "lxml")
 articles = get_article_data(source)
 baffler = get_baffler(articles)
 
-print(baffler)
