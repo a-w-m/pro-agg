@@ -3,13 +3,16 @@ import requests
 import lxml
 from datetime import datetime
 
+def create_headers():
+    return {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+    }
 
 def is_request_successful(response):
     if response.status_code == 200:
         return True
     else:
         return False
-
 
 def get_html_text(response):
     if response.status_code == 200:
@@ -67,7 +70,7 @@ def get_truthout(articles):
 
 
 def run_truthout():
-    response = requests.get("https://www.truthout.org/latest/")
+    response = requests.get("https://www.truthout.org/latest/", headers = create_headers())
     if is_request_successful(response):
         html_text = get_html_text(response)
         source = BeautifulSoup(html_text, "lxml")
