@@ -7,9 +7,14 @@ from application.soup.truthout import run_truthout
 from application.soup.viewpoint import run_viewpoint
 
 
+@app.route("/", methods = ['GET'])
+def index():
+    return app.send_static_file('index.html') 
+
 
 @app.route("/api", methods = ['GET'])
 
-def index():
+def api():
     response = jsonify(jacobin = run_jacobin(), baffler = run_baffler(), truthout = run_truthout(), roarmag = run_roarmag(), viewpoint = run_viewpoint())
     return response
+    
