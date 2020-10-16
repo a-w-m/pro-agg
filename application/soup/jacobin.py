@@ -3,6 +3,11 @@ import requests
 import lxml
 from datetime import datetime
 
+def is_request_successful(response):
+    if response.status_code == 200:
+        return True
+    else:
+        return False
 
 def get_html_text(response):
     if response.status_code == 200:
@@ -30,6 +35,9 @@ def get_url(article):
         "href"
     )
 
+def get_author_url(article):
+    return "https://jacobinmag.com" + article.find("a", class_="hm-dg__author-link").get('href')
+
 
 def get_article_data(source):
     result = []
@@ -40,6 +48,7 @@ def get_article_data(source):
         data["author"] = get_author(article)
         data["date"] = get_date(article)
         data["url"] = get_url(article)
+        data["author_url"] = get_author_url(article)
 
         result.append(data)
     return result
@@ -49,12 +58,16 @@ def get_jacobin(articles):
 
     return {"articles": articles}
 
+def run_jacobin():
+        response = requests.get("https://www.jacobinmag.com")
+        if(is_request_successful(response)):
+            html_text = get_html_text(response)
+            source = BeautifulSoup(html_text, "lxml").select_one(".hm-sd-b__container")
+            articles = get_article_data(source)
+            return get_jacobin(articles)
 
 
-response = requests.get("https://www.jacobinmag.com")
-html_text = get_html_text(response)
-source = BeautifulSoup(html_text, "lxml").select_one(".hm-sd-b__container")
-articles = get_article_data(source)
-jacobin = get_jacobin(articles)
+if __name__ == '__main__':
+    print(run_jacobin())
 
 

@@ -4,20 +4,26 @@ import "./style/button.css";
 const populate_sidebar = (data) => {
 	const sidebar = document.querySelector(".sidebar");
 
-	Object.keys(data).forEach((key) => {
+	Object.keys(data).concat("all").forEach((key) => {
+		if (data[key]!== null){
 		const button = create_publication_button(data, key);
 		const li = document.createElement("li");
 		li.appendChild(button);
 		sidebar.appendChild(li);
+		}
 	});
+
+
 };
+
 
 const create_publication_button = (data, key) => {
 	const button = document.createElement("button");
 	const wrapper = document.createElement("div");
-	const icon = create_icon(key);
+	
+	const icon = (key !== "all")? create_icon(key): create_sigma();
 	const title = create_publication_title(key);
-	wrapper.appendChild(icon);
+	if (icon) {wrapper.appendChild(icon);}
 	wrapper.appendChild(title);
 	button.appendChild(wrapper);
 
@@ -27,6 +33,11 @@ const create_publication_button = (data, key) => {
 	});
 	return button;
 };
+
+const create_sigma = ()=>{
+	const sigma = document.createElement('span')
+	return sigma
+}
 
 const create_icon = (key) => {
 	const icons = {

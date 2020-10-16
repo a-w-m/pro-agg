@@ -1,90 +1,81 @@
-:root{
---main-font: 'Quicksand', 'sans-serif';
---font-size: 10px;
---body-bg-color: #F7EBEC;
+:root {
+	--main-font: "Quicksand", "sans-serif";
+	--font-size: 10px;
+	--body-bg-color: #f7ebec;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    font-family: var(--main-font);
-    font-size: var(--font-size);
-    background-color: var(--body-bg-color);
-    overflow: hidden;
-
+html,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	font-family: var(--main-font);
+	font-size: var(--font-size);
+	background-color: var(--body-bg-color);
+	overflow: hidden;
 }
 
-header{
-    margin: 1rem;
-    font-size: 1.6rem;
-    font-weight: 700;
-    padding: .1rem .6rem;
+header {
+	margin: 1rem;
+	font-size: 1.6rem;
+	font-weight: 700;
+	padding: 0.1rem 0.6rem;
 }
 
 main {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-    margin-top: 2rem;;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+	height: 100%;
+	margin-top: 2rem;
 }
 
-img {
-    
-    height: 18px;
-    width: 18px;
-    margin-right: 10px;
-    padding-bottom: .1rem;
-
+ul {
+	margin-block-end: 0;
+	margin-block-start: 0;
+	padding-inline-start: 0;
 }
 
-h2 {
-    margin-block-start:0;
-    font-size: 1.4rem;
+li {
+	list-style-type: none;
 }
 
-h4{
-    
-    margin-block-end: 0;
-    margin-block-start: 0;
-    font-size: 1.4rem;
-
+main > aside {
+	flex: 0 1 10%;
+	margin: 1rem;
 }
 
-ul{
-
-    margin-block-end: 0;
-    margin-block-start: 0;
-    padding-inline-start: 0;
-
+.sidebar {
+	display: flex;
+	flex-direction: column;
 }
 
-li{
-    list-style-type: none;
+.sidebar > li {
+	margin-bottom: 1rem;
 }
 
-
-main > aside{
-    
-    flex: 0 1 10%;
-    margin: 1rem;
-
-}
-
-.sidebar{
-    display: flex;
-    flex-direction: column;
-}
-
-.sidebar > li{
-    margin-bottom: 1rem;
-}
-
-main > section{
-    flex: 1 0 50%;
-    margin: 1rem;
+main > section {
+	flex: 1 0 50%;
+	margin: 1rem;
     margin-left: 0;
+    overflow: auto;
+    scrollbar-color: var(--button-text-color) white;
+    scrollbar-width: thin
 }
 
+/*Scrollbar for chrome and safari*/
+main > section::-webkit-scrollbar-track {
+	border: 0.01rem solid transparent;
+	background-clip: content-box;
+}
+
+main > section::-webkit-scrollbar {
+	width: 0.4rem;
+	height: 0;
+}
+
+main > section::-webkit-scrollbar-thumb {
+	border: 1px solid var(--button-text-color);
+	background: var(--button-text-color);
+}

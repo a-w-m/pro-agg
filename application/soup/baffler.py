@@ -9,6 +9,12 @@ def create_headers():
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
     }
 
+def is_request_successful(response):
+    if response.status_code == 200:
+        return True
+    else:
+        return False
+
 
 def get_html_text(response):
     if response.status_code == 200:
@@ -34,6 +40,9 @@ def get_date(article):
 def get_url(article):
     return article.select_one(".hed > a").get("href")
 
+def get_author_url(article):
+    return article.select_one(".name").get("href")
+
 
 def get_article_data(source):
 
@@ -43,6 +52,7 @@ def get_article_data(source):
 
         data["title"] = get_title(article[1])
         data["author"] = get_author(article[1])
+        data["author_url"] = get_author_url(article[1])
         data["date"] = get_date(article[1])
         data["url"] = get_url(article[1])
 
@@ -54,10 +64,14 @@ def get_article_data(source):
 def get_baffler(articles):
     return {"articles": articles}
 
+def run_baffler():
+    response = requests.get("https://thebaffler.com/latest", headers=create_headers())
+    if (is_request_successful(response)):
+        html_text = get_html_text(response)
+        source = BeautifulSoup(html_text, "lxml")
+        articles = get_article_data(source)
+        return get_baffler(articles)
 
-response = requests.get("https://thebaffler.com/latest", headers=create_headers())
-html_text = get_html_text(response)
-source = BeautifulSoup(html_text, "lxml")
-articles = get_article_data(source)
-baffler = get_baffler(articles)
-
+if __name__ == '__main__':
+    print(run_baffler())
+ 

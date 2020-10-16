@@ -1,22 +1,21 @@
-import "./style/article.css"
+import "./style/article.css";
 
 const populate_articles = (data, publication = Object.keys(data)[0]) => {
 	const list = document.querySelector(".articles");
+	const pubs = publication === "all" ? Object.keys(data) : [publication];
 
-	Object.keys(data)
-		.filter((key) => key == publication)
-		.forEach(() => {
-			data[publication]["articles"].forEach((article) => {
-				const card = create_article_component(article);
-				list.appendChild(card);
-			});
+	pubs.forEach((key) => {
+		data[key]["articles"].forEach((article) => {
+			const card = create_article_component(article);
+			list.appendChild(card);
 		});
+	});
 };
 
 const create_article_component = (article) => {
 	const card = document.createElement("li");
 	const title = create_title(article.title, article.url);
-	const author = create_author(article.author);
+	const author = create_author(article.author, article.author_url);
 	const date = create_date(article.date);
 	const metaDataContainer = create_metaDataContainer([author, date]);
 	card.appendChild(title);
@@ -39,9 +38,11 @@ const create_date = (str) => {
 	return date;
 };
 
-const create_author = (str) => {
+const create_author = (str, url) => {
+	const link = create_link(url);
 	const author = document.createElement("span");
-	author.innerHTML = str;
+	link.innerHTML = str;
+	author.appendChild(link);
 	return author;
 };
 
