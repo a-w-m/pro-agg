@@ -1,1 +1,1 @@
-web: gunicorn pro-agg:app
+web: gunicorn wsgi:app
