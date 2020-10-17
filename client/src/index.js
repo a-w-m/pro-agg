@@ -4,6 +4,7 @@ import populate_sidebar from "./sidebar.js";
 import "./style/styles.css";
 
 (async () => {
+	document.querySelector('.sidebar').innerHTML = "Loading..."
 	const response = await axios.get("/api");
 	return response.data;
 })().then((res) => {
