@@ -13,13 +13,10 @@ def combine_soup():
     return {"jacobin":run_jacobin(), "baffler":run_baffler(), "truthout":run_truthout(), "roarmag":run_roarmag(), "viewpoint":run_viewpoint(), "random":random.random()}
 
 combined_soup = combine_soup()
-print("test")
-
 
 def sched_soup():
     global combined_soup
     combined_soup = combine_soup() 
-    print(combined_soup["random"])
     
 
 def run_schedule():
@@ -34,7 +31,7 @@ def run_threaded(job_func):
     job_thread.start()
 
 
-schedule.every(20).seconds.do(run_threaded, sched_soup)
+schedule.every(2).hours.do(run_threaded, sched_soup)
 run_threaded(run_schedule)
 
 
