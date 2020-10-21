@@ -3,7 +3,6 @@ import "./style/button.css";
 
 const populate_sidebar = (data) => {
 	const sidebar = document.querySelector(".sidebar");
-	sidebar.innerHTML = ""
 
 	Object.keys(data).concat("all").forEach((key) => {
 		if (data[key]!== null){

@@ -1,28 +1,33 @@
 from application import app
 from flask import jsonify
-import schedule, time, threading, random
+import schedule, time, threading
 from application.soup.jacobin import run_jacobin
 from application.soup.baffler import run_baffler
 from application.soup.roarmag import run_roarmag
 from application.soup.truthout import run_truthout
-from application.soup.viewpoint import run_viewpoint
-
 
 
 def combine_soup():
-    return {"jacobin":run_jacobin(), "baffler":run_baffler(), "truthout":run_truthout(), "roarmag":run_roarmag(), "viewpoint":run_viewpoint(), "random":random.random()}
+    return {
+        "jacobin": run_jacobin(),
+        "baffler": run_baffler(),
+        "truthout": run_truthout(),
+        "roarmag": run_roarmag(),
+    }
+
 
 combined_soup = combine_soup()
 
+
 def sched_soup():
     global combined_soup
-    combined_soup = combine_soup() 
-    
+    combined_soup = combine_soup()
+
 
 def run_schedule():
     while 1:
         schedule.run_pending()
-        time.sleep(1)  
+        time.sleep(1)
 
 
 def run_threaded(job_func):
@@ -35,16 +40,12 @@ schedule.every(2).hours.do(run_threaded, sched_soup)
 run_threaded(run_schedule)
 
 
-
-
-@app.route("/", methods = ['GET'])
+@app.route("/", methods=["GET"])
 def index():
-    return app.send_static_file('index.html') 
+    return app.send_static_file("index.html")
 
 
-@app.route("/api", methods = ['GET'])
-
+@app.route("/api", methods=["GET"])
 def api():
     global combined_soup
     return jsonify(combined_soup)
-    
