@@ -1,1 +1,3 @@
-web: gunicorn application:app
+
+web: gunicorn wsgi: pro-agg
+app: 'cd client && npm run build'
