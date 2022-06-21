@@ -59,9 +59,11 @@ main > section {
 	flex: 1 0 50%;
 	margin: 1rem;
     margin-left: 0;
+	padding-bottom: 10rem;
     overflow: auto;
     scrollbar-color: var(--button-text-color) white;
-    scrollbar-width: thin
+    scrollbar-width: thin;
+
 }
 
 /*Scrollbar for chrome and safari*/
