@@ -1,3 +1,4 @@
+[ScreenShot](assets/screenshot.png)
 # pro-agg
 Pro-Agg is a minimalist web application that aggregates news from several progressive publications using python web-scraping, flask to serve the api, and javascript on the front-end.
 
