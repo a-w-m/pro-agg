@@ -5,7 +5,7 @@
 </p>
 
 # Description
-[Pro-Agg](https://pro-agg.herokuapp.com/) is a minimalist web application that aggregates news from several progressive publications using python web-scraping, flask to serve the api, and javascript on the front-end.
+[Pro-Agg](https://pro-agg.herokuapp.com/) is a minimalist web application that aggregates news from several progressive publications using Python web-scraping, Flask to serve the api, and JavaScript on the front-end.
 
 # Quick Start
 
@@ -30,7 +30,7 @@ venv\scripts\activate
 
 4. Install python requirements
 
-> From the root directory, run the following command to insttall the backend requirements
+> From the root directory, run the following command to install the backend requirements
 
 ```shell
 pip install -r requirements.txt
@@ -48,25 +48,29 @@ FLASK_ENV=development
 
 6. Install javascript packages in client folder
 
-> Navigate to the client folder and then run the follwing command to install node packages
+> Navigate to the client folder and then run the following command to install node packages
 
 ```shell
 cd client
 npm i 
 ```
 
-7. bundle javascript files with webpack in client folder
+7. Bundle javascript files with webpack in client folder
 
-> From the client folder, run the build script to bundle javascript files
+> From the client folder, run the build script to bundle the frontend files
 
 ```shell
 cd client
 npm run build
 ```
 
-8. launch flask application from root directory
+8. Launch Flask application from root directory
+
+> Navigate to the root directory, run the following command to initiate our Flask application which serves the html file and the api data to the client.
 
 ```shell
 cd..
 flask run
 ```
+
+> In your broweser, visit localhost:5000 to view the application
