@@ -26,7 +26,7 @@ def get_author(article):
 
 def get_date(article):
     return datetime.strptime(
-        article.find("time").get("datetime"), "%Y-%m-%d %H:%M:%S"
+        article.find("time").get("datetime"), "%Y-%m-%dT%H:%M:%S"
     ).date().strftime("%m.%d.%y")
 
 

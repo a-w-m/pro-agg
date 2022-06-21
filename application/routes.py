@@ -1,3 +1,4 @@
+from cProfile import run
 from application import app
 from flask import jsonify
 import schedule, time, threading
@@ -5,6 +6,7 @@ from application.soup.jacobin import run_jacobin
 from application.soup.baffler import run_baffler
 from application.soup.roarmag import run_roarmag
 from application.soup.truthout import run_truthout
+from application.soup.viewpoint import run_viewpoint
 
 
 def combine_soup():
@@ -13,6 +15,7 @@ def combine_soup():
         "baffler": run_baffler(),
         "truthout": run_truthout(),
         "roarmag": run_roarmag(),
+        "viewpoint": run_viewpoint()
     }
 
 
@@ -36,7 +39,7 @@ def run_threaded(job_func):
     job_thread.start()
 
 
-schedule.every(2).hours.do(run_threaded, sched_soup)
+schedule.every(12).hours.do(run_threaded, sched_soup)
 run_threaded(run_schedule)
 
 
