@@ -5,7 +5,7 @@
 </p>
 
 # Description
-Pro-Agg(https://pro-agg.herokuapp.com/) is a minimalist web application that aggregates news from several progressive publications using python web-scraping, flask to serve the api, and javascript on the front-end.
+[Pro-Agg](https://pro-agg.herokuapp.com/) is a minimalist web application that aggregates news from several progressive publications using python web-scraping, flask to serve the api, and javascript on the front-end.
 
 # Quick Start
 
